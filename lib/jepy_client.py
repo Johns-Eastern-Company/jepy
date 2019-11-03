@@ -1,13 +1,11 @@
 import requests
 import warnings
 import json
-from jepy_exceptions import *
-
-
+from lib.jepy_exceptions import *
 
 
 class JepyClient():
-    def __init__(self, **kwargs):#, user_id, password):
+    def __init__(self, **kwargs):
         if ('user_id' and 'password') in kwargs:
             user_id, password = kwargs['user_id'], kwargs['password']
             self.jwt_token = self._authenticate(user_id, password)

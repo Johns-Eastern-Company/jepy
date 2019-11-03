@@ -1,17 +1,25 @@
 import json
 import datetime
-from jepy_exceptions import *
-from jepy_client import JepyClient
+from lib.jepy_exceptions import *
+from lib.jepy_client import JepyClient
 
 
 class Jepy():
-    def __init__(self, **kwargs):#, user_id, password):
+    def __init__(self, **kwargs):
         if ('user_id' and 'password') in kwargs:
+            self._str_val = self.__repr__()
             user_id, password = kwargs['user_id'], kwargs['password']
             self.client = JepyClient(user_id=user_id, password=password)
             self.jwt_token = self.client.jwt_token
         else:
             self._status()
+
+    def __str__(self):
+        return self._str_val
+        
+    def _status(self):
+        result = JepyClient()._call_status()
+        self._str_val = self._handle_result(result)[0]
 
     def _call(self, endpoint):
         headers = {'Authorization': ''.join('JWT ' + self.jwt_token)}
@@ -25,10 +33,6 @@ class Jepy():
             return result['message']
         elif 'error' in result:
             raise ServerError(result['error'])
-
-    def _status(self):
-        result = JepyClient()._call_status()
-        print(self._handle_result(result))
 
     def detail_by_claim(self, claim_num):
         call = self._call(''.join(f'/v0/claims/{claim_num}.json'))
