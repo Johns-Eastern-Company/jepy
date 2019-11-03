@@ -2,3 +2,6 @@ __pycache__/
 tryme.py
 lib/__init__.py
 setup.py
+build/
+dist/
+Jepy.egg-info
