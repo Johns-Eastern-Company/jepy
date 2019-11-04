@@ -27,31 +27,9 @@ Then use the client you've set up to make calls.
 client.detail_by_claim('012345')
 ```
 
-
 ### Usage
 
-Jepy supports all endpoints of the API. Currently the following functions exist:
-
-* Detail of one claim
-  ```python
-  client.detail_by_claim('012345')
-  ```
-* Detail of all claims
-  ```python
-  client.all_claims_detail()
-  ```
-* List of claim numbers
-  ```python
-  client.all_claims()
-  ```
-* List notes by claim
-  ```python
-  client.note_by_claim('012345')
-  ```
-* List checks by claim and/or date
-  ```python
-  client.check(claim_num = '012345', from_date = '19940206', to_date = '20191016')
-  ```
+Jepy supports all endpoints of the API. See the [wiki](https://github.com/JECO/jepy/wiki) for detailed information.
 
 ### Interpreting Results
 
@@ -78,7 +56,11 @@ Jepy wouldn't be possible without [Requests](https://pypi.org/project/requests/)
 
 ## Bug Reports/Feature Requests
 
-Please submit a ticket at the [Johns Eastern Helpdesk](https://je.zendesk.com/hc/en-us/requests/new) for feature requests or bug fixes.
+To report a bug, please use the "New issue" button on the project's [Issues page](https://github.com/JECO/jepy/issues). You may also contact the help desk below to report bugs.
+
+Please submit a ticket at the [Johns Eastern Helpdesk](https://je.zendesk.com/hc/en-us/requests/new) for all feature requests.
+
+Note that features that require changes to the API itself may not require any update in the wrapper (such as a change to a query). In this case, the branch will not be public and will exist under the API's repository.
 
 ## License
 
