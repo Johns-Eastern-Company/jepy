@@ -1,7 +1,7 @@
 import json
 import datetime
-from lib.jepy_exceptions import *
-from lib.jepy_client import JepyClient
+from jepy.jepy_exceptions import *
+from jepy.jepy_client import JepyClient
 
 
 class Jepy():

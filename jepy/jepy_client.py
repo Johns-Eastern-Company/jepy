@@ -1,7 +1,7 @@
 import requests
 import warnings
 import json
-from lib.jepy_exceptions import *
+from jepy.jepy_exceptions import *
 
 
 class JepyClient():
@@ -36,14 +36,13 @@ class JepyClient():
         if 'payload' in kwargs:
             payload = kwargs['payload']
             response = requests.post(url, json=payload, verify=True)
-            try:
-                token_dict = self._handle_response(response)
+            token_dict = self._handle_response(response)
+            if 'access_token' in token_dict:
                 return token_dict['access_token']
-            except ServerError as e:
-                if 'UNAUTHORIZED' in str(e):
-                    raise TokenError(e)
-                else:
-                    raise
+            elif 'error' in token_dict:
+                raise TokenError(token_dict['error'][0])
+            else:
+                raise ServerError(token_dict)
         elif 'headers' in kwargs:
             response = requests.get(url, headers=kwargs['headers'], verify=True)
             return self._handle_response(response)

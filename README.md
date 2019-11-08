@@ -31,10 +31,12 @@ client.detail_by_claim('012345')
 
 Jepy supports all endpoints of the API. See the [wiki](https://github.com/JECO/jepy/wiki) for detailed information.
 
+For information on the API itself, see the [API wiki](https://github.com/JECO/jeapi-docs/wiki).
+
 ### Interpreting Results
 
 The API answers calls by dumping results into a JSON file with one of three keys. Jepy handles these as follows:
-  * Results - Returns a dictionary keyed as 'results', value will be a list of dicts.
+  * Results - Returns a dictionary keyed as 'results', value will be a list of dictionaries.
   *	Message - Like results, this returns a dictionary keyed as 'message', the value is a message from the server that is not an error. Most often this means no results were found.
   *	Error - Raises an exception. Usually indicates authentication failed, the request syntax is bad, or the server is down.
 
