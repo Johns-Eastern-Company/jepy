@@ -6,6 +6,7 @@ from jepy.jepy_client import JepyClient
 
 class Jepy():
     def __init__(self, **kwargs):
+        self.prefix = 'v0'
         if ('user_id' and 'password') in kwargs:
             self._str_val = self.__repr__()
             user_id, password = kwargs['user_id'], kwargs['password']
@@ -34,27 +35,27 @@ class Jepy():
         elif 'error' in result:
             raise ServerError(result['error'])
 
-    def detail_by_claim(self, claim_num):
-        call = self._call(''.join(f'/v0/claims/{claim_num}.json'))
+    def _call_safely(self, remaining_uri):
+        call = self._call(''.join(f'/{self.prefix}/{remaining_uri}'))
         result = self._handle_result(call)
         return result
 
-    def all_claims_detail(self):
-        call = self._call('/v0/claims/view_all_detail.json')
-        result = self._handle_result(call)
-        return result
+    def claims(self, **kwargs):
+        if len(kwargs) > 1:
+            raise ArgumentError('Too many keyword arguments, use only one.')
+        else:
+            if 'detailed_list' in kwargs:
+                if kwargs['detailed_list'] == True:
+                    return self._call_safely(f'claims/view_all_detail.json')
+            elif 'claim_num' in kwargs:
+                return self._call_safely(f"claims/{kwargs['claim_num']}.json")
+            else:
+                return self._call_safely(f'claims/view_all.json')
 
-    def all_claims(self):
-        call = self._call('/v0/claims/view_all.json')
-        result = self._handle_result(call)
-        return result
+    def notes(self, claim_num):
+        return self._call_safely(f'notes/{claim_num}.json')
 
-    def note_by_claim(self, claim_num):
-        call = self._call(''.join(f'/v0/notes/{claim_num}.json'))
-        result = self._handle_result(call)
-        return result
-
-    def check(self, **kwargs):
+    def checks(self, endpoint='checks', **kwargs):
         claim_num = 'all'
         from_date = False
         to_date = False
@@ -64,6 +65,7 @@ class Jepy():
             from_date = datetime.datetime.strptime(kwargs['from_date'], '%Y%m%d').date()
         if 'to_date' in kwargs:
             to_date = datetime.datetime.strptime(kwargs['to_date'], '%Y%m%d').date()
-        call = self._call(f'/v0/checks/{from_date}/{to_date}/{claim_num}.json')
-        result = self._handle_result(call)
-        return result
+        return self._call_safely(f'{endpoint}/{from_date}/{to_date}/{claim_num}.json')
+
+    def reserves(self, **kwargs):
+        return self.checks(endpoint='reserves', **kwargs)

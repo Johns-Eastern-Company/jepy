@@ -5,3 +5,7 @@ class TokenError(ValueError):
 class ServerError(Exception):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
+
+class ArgumentError(ValueError):
+    def __init__(self,*args,**kwargs):
+        ValueError.__init__(self,*args,**kwargs)
