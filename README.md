@@ -24,7 +24,7 @@ client = Jepy(**creds)
 Then use the client you've set up to make calls.
 
 ```python
-client.detail_by_claim('012345')
+client.claims(claim_num = '012345')
 ```
 
 ### Usage
