@@ -69,3 +69,6 @@ class Jepy():
 
     def reserves(self, **kwargs):
         return self.checks(endpoint='reserves', **kwargs)
+
+    def additional(self, claim_num):
+        return self._call_safely(f'additional/{claim_num}.json')
