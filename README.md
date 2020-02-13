@@ -52,6 +52,10 @@ If the server is up, your credentials may be invalid and you should contact the 
 
 You can also [click here](https://je-api.com/) to see if the server is up, too.
 
+## Operating System
+
+This package is operating system agnostic. It has been tested on Windows 10 and Ubuntu 19.10.
+
 ## Dependencies
 
 Jepy wouldn't be possible without [Requests](https://pypi.org/project/requests/). It is the only non-built-in dependency (and it will automatically install with `pip`).
