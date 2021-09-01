@@ -34,11 +34,16 @@ Jepy supports all endpoints of the API. See the [wiki](https://github.com/JECO/j
 For information on the API itself, see the [API wiki](https://github.com/JECO/jeapi-docs/wiki).
 
 ### Interpreting Results
+***Changed as of version 1.0.0***
+
+All responses return a `JepyServerResponse` object which inherits from the `quick_rest.ServerResponse` object. This object has methods that allow you to easily manipulate data.
+
+You can use `JepyServerResponse.decode()` to get the response content directly.
 
 The API answers calls by dumping results into a JSON file with one of three keys. Jepy handles these as follows:
-  * Results - Returns a dictionary keyed as 'results', value will be a list of dictionaries.
+  *	Results - Returns a dictionary keyed as 'results', value will be a list of dictionaries.
   *	Message - Like results, this returns a dictionary keyed as 'message', the value is a message from the server that is not an error. Most often this means no results were found.
-  *	Error - Raises an exception. Usually indicates authentication failed, the request syntax is bad, or the server is down.
+  *	Error - May raise an exception in certain cases. Usually indicates authentication failed, the request syntax is bad, or the server is down.
 
 ## Troubleshooting
 
@@ -57,8 +62,13 @@ You can also [click here](https://je-api.com/) to see if the server is up, too.
 This package is operating system agnostic. It has been tested on Windows 10 and Ubuntu 19.10.
 
 ## Dependencies
+***Changed as of version 1.0.0***
 
-Jepy wouldn't be possible without [Requests](https://pypi.org/project/requests/). It is the only non-built-in dependency (and it will automatically install with `pip`).
+Jepy no longer makes calls with [`requests`](https://pypi.org/project/requests/) directly, it relies on [`quick_rest`](https://github.com/LamerLink/quick_rest) which in turn uses `requests` but does some error handling and provides results in an easily manipulated way.
+
+To allow conversion of JSON results to XML via `JepyServerResponse.to_xml`, [`dicttoxml`](https://github.com/quandyfactory/dicttoxml) is required.
+
+All dependencies are installed automatically during setup.
 
 ## Bug Reports/Feature Requests
 

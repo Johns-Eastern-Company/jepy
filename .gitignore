@@ -1,8 +1,8 @@
 __pycache__/
 tryme.py
-jepy/__init__.py
 setup.py
 build/
 dist/
 Jepy.egg-info
 dist_archive/
+tryall.py
