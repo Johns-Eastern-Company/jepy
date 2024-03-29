@@ -64,7 +64,7 @@ This package is operating system agnostic. It has been tested on Windows 10 and 
 ## Dependencies
 ***Changed as of version 1.0.0***
 
-Jepy no longer makes calls with [`requests`](https://pypi.org/project/requests/) directly, it relies on [`quick_rest`](https://github.com/LamerLink/quick_rest) which in turn uses `requests` but does some error handling and provides results in an easily manipulated way.
+Jepy no longer makes calls with [`requests`](https://pypi.org/project/requests/) directly, it relies on [`quick_rest`](https://github.com/michaeleveringham/quick_rest) which in turn uses `requests` but does some error handling and provides results in an easily manipulated way.
 
 To allow conversion of JSON results to XML via `JepyServerResponse.to_xml`, [`dicttoxml`](https://github.com/quandyfactory/dicttoxml) is required.
 
