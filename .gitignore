@@ -1,8 +1,4 @@
 __pycache__/
-tryme.py
-setup.py
+.vscode/
 build/
 dist/
-Jepy.egg-info
-dist_archive/
-tryall.py

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "jepy"
+version = "1.0.1"
+description = "A simple Python wrapper to access the Johns Eastern Company API."
+authors = ["Davies <support@je.zendesk.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+quick-rest = ">=0.1.7"
+dicttoxml = ">=1.7.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
