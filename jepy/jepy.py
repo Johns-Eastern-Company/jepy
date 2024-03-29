@@ -113,7 +113,7 @@ class Jepy(JWTClient):
         endpoint: str = 'checks',
         **kwargs: Any
     ) -> JepyServerResponse:
-        claim_num = kwargs.get('from_date', 'all')
+        claim_num = kwargs.get('claim_num', 'all')
         from_date = kwargs.get('from_date', False)
         to_date = kwargs.get('to_date', False)
         if from_date:
