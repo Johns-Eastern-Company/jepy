@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jepy"
-version = "1.0.1"
+version = "1.1.0"
 description = "A simple Python wrapper to access the Johns Eastern Company API."
 authors = ["Davies <support@je.zendesk.com>"]
 readme = "README.md"
