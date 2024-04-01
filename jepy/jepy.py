@@ -49,7 +49,7 @@ class Jepy(JWTClient):
     def __init__(self,
         username: str = '',
         password: str = '',
-        vprefix: str = 'v0/',
+        vprefix: str = 'v1/',
         **kwargs: Any
     ) -> None:
         if not username and kwargs.get('user_id', ''):
